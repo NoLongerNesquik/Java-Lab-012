@@ -4,8 +4,8 @@ import static java.lang.Math.sqrt;
 public class Planet {
     double mass;
     double radius;
-    double[] location = new double[2];
-    double[] velocity = new double[2];
+    double[] location;
+    double[] velocity;
     String name;
     public Planet(String name, double radius, double mass, double[] location, double[] velocity) {
         this.name = name;

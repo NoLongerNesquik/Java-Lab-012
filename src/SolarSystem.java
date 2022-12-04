@@ -20,7 +20,7 @@ public class SolarSystem {
 
     public void showPlanets() {
         for (Planet i: planets) {
-            i.toString();
+            System.out.println(i.toString());
         }
     }
 
@@ -30,13 +30,18 @@ public class SolarSystem {
 
         double[] location = new double[]{0.0,0.0};
         for (Planet i : planets) {
-            double[] newLocation = {i.getLocation()[0] + time * (i.getVelocity()[0]),i.getLocation()[1] + time * (i.getVelocity()[1])};
+            double xCoor = i.getLocation()[0];
+            double yCoor = i.getLocation()[1];
+            double[] newLocation = {xCoor + time * (xCoor),yCoor + time * (yCoor)};
             i.setLocation(newLocation);
             double rx = sun.getLocation()[0];
             double ry = sun.getLocation()[1];
             double r = Math.sqrt(Math.pow(rx, 2) + Math.pow(ry, 2));
 
-            double accX = G * sun.getMa
+            double accX = gravity * sun.getMass() * rx / Math.pow(r,3);
+            double accY = gravity * sun.getMass() * ry / Math.pow(r,3);
+
+            i.setVelocity(new double[]{(i.getVelocity()[0] + time * accX), (i.getVelocity()[1] + time * accY)});
 
         }
         }
